@@ -1,16 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uz">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>IT Darsliklar</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#090b12" />
+  <title>Academy — AI & IT</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div class="wrap" id="app"></div>
-<nav class="nav"><div id="nav"></div></nav>
-<script src="courses.js"></script>
-<script src="app.js"></script>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark">A</div>
+      <div class="brand-copy">
+        <span class="eyebrow">WELCOME TO</span>
+        <strong>ACADEMY</strong>
+      </div>
+      <button class="profile-button" aria-label="Profil">✦</button>
+    </header>
+
+    <section id="homeScreen" class="screen screen-active">
+      <div class="hero">
+        <span class="eyebrow">BILIM OL · O‘RGAN · RIVOJLAN</span>
+        <h1>Kelajagingni<br /><span>bugun yarat.</span></h1>
+        <p>Sun’iy intellekt va zamonaviy IT olamiga ilk qadamingni tashla.</p>
+      </div>
+
+      <div class="section-heading">
+        <span>O‘QUV YO‘NALISHLARI</span>
+        <small>01 / 02</small>
+      </div>
+
+      <div class="course-grid">
+        <button class="course-card ai-card" data-open="aiScreen">
+          <span class="card-icon">✧</span>
+          <span class="card-arrow">↗</span>
+          <span class="card-label">YO‘NALISH 01</span>
+          <strong>Sun’iy intellekt <em>(AI)</em></strong>
+          <span class="card-description">AI, ChatGPT va kelajak texnologiyalari</span>
+          <span class="card-cta">Bo‘limni ochish <b>→</b></span>
+        </button>
+
+        <button class="course-card it-card" data-open="itScreen">
+          <span class="card-icon">&lt;/&gt;</span>
+          <span class="card-arrow">↗</span>
+          <span class="card-label">YO‘NALISH 02</span>
+          <strong>IT va Axborot<br />texnologiyalari</strong>
+          <span class="card-description">Dasturlash, kompyuter va raqamli bilimlar</span>
+          <span class="card-cta">Bo‘limni ochish <b>→</b></span>
+        </button>
+      </div>
+      <footer class="home-footer"><span class="pulse-dot"></span> Yangi bilimlar sari birga</footer>
+    </section>
+
+    <section id="aiScreen" class="screen detail-screen">
+      <button class="back-button" data-back>‹ <span>Orqaga</span></button>
+      <div class="detail-hero ai-detail">
+        <span class="detail-symbol">✧</span>
+        <span class="eyebrow">YO‘NALISH 01</span>
+        <h2>Sun’iy intellekt <span>(AI)</span></h2>
+        <p>Sun’iy intellekt vositalari va ulardan samarali foydalanishni o‘rganing.</p>
+      </div>
+      <div class="empty-state">
+        <div class="empty-icon">✦</div>
+        <strong>Darslar tez orada</strong>
+        <p>Bu bo‘limga AI bo‘yicha darsliklar joylashtiriladi.</p>
+      </div>
+    </section>
+
+    <section id="itScreen" class="screen detail-screen">
+      <button class="back-button" data-back>‹ <span>Orqaga</span></button>
+      <div class="detail-hero it-detail">
+        <span class="detail-symbol">&lt;/&gt;</span>
+        <span class="eyebrow">YO‘NALISH 02</span>
+        <h2>IT va Axborot texnologiyalari</h2>
+        <p>Dasturlash va zamonaviy texnologiyalar bo‘yicha video darsliklar.</p>
+      </div>
+      <div class="section-heading"><span>VIDEO DARSLIKLAR</span><small>0 ta dars</small></div>
+      <div class="empty-state">
+        <div class="empty-icon">▶</div>
+        <strong>Hozircha darslar yo‘q</strong>
+        <p>Admin yangi video darsliklarni joylashtirganda ular shu yerda ko‘rinadi.</p>
+      </div>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
 </body>
 </html>
