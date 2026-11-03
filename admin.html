@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#090b12" />
+  <title>Academy — Admin panel</title>
+  <link rel="stylesheet" href="admin.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <main class="admin-shell">
+    <header class="header">
+      <a class="back" href="index.html">‹ Saytga qaytish</a>
+      <span class="tag">ADMINISTRATION</span>
+    </header>
+
+    <section id="checking" class="state-card">
+      <div class="loader"></div>
+      <h1>Tekshirilmoqda...</h1>
+      <p>Telegram profilingiz tekshirilmoqda.</p>
+    </section>
+
+    <section id="denied" class="state-card hidden">
+      <div class="state-icon">⛔</div>
+      <h1>Kirish taqiqlangan</h1>
+      <p>Bu sahifa faqat administrator uchun.</p>
+      <small id="deniedReason"></small>
+      <a class="primary-link" href="index.html">Bosh sahifaga qaytish</a>
+    </section>
+
+    <section id="adminPanel" class="hidden">
+      <div class="welcome">
+        <span class="eyebrow">ACADEMY CONTROL CENTER</span>
+        <h1>Admin panel</h1>
+        <p>Platformadagi o‘quvchilar va darsliklarni boshqarish.</p>
+      </div>
+
+      <div class="admin-id">
+        <span>Administrator Telegram ID</span>
+        <strong id="adminId">6649277063</strong>
+        <span class="verified">● Admin ruxsati tasdiqlandi</span>
+      </div>
+
+      <div class="section-title">BOSHQARUV</div>
+      <div class="action-grid">
+        <article class="action-card">
+          <div class="action-icon purple">♙</div>
+          <h2>O‘quvchilar</h2>
+          <p>Yangi o‘quvchilarni tasdiqlash va ruxsatlarini boshqarish.</p>
+          <span class="coming">Backend ulangach ishlaydi</span>
+        </article>
+        <article class="action-card">
+          <div class="action-icon blue">▶</div>
+          <h2>Video darslar</h2>
+          <p>IT va AI kurslariga yangi video darsliklar qo‘shish.</p>
+          <span class="coming">Backend ulangach ishlaydi</span>
+        </article>
+      </div>
+
+      <div class="notice">
+        <strong>Himoya haqida</strong>
+        <p>Bu sahifadagi ID tekshiruvi hozircha interfeys darajasida. Haqiqiy xavfsizlik uchun Telegram <code>initData</code> serverda tekshirilishi va admin amallari server orqali bajarilishi shart. Faqat brauzerdagi ID tekshiruvi yetarli emas.</p>
+      </div>
+    </section>
+  </main>
+  <script src="admin.js"></script>
+</body>
+</html>
