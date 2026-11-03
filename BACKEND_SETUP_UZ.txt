@@ -1,0 +1,53 @@
+ACADEMY — VERCEL + SUPABASE BACKEND
+
+Bu paket oddiy HTML/CSS/JS sayt uchun Vercel Serverless Functions backendini qo‘shadi.
+API fayllari /api ichida. Vercel shu papkani avtomatik API route qiladi.
+
+1) SUPABASE
+- Supabase’da yangi project yarating.
+- SQL Editor > New query ga kiring.
+- supabase/schema.sql ichidagi SQL ni to‘liq qo‘yib Run bosing.
+- Storage > New bucket: academy-videos nomi bilan yarating.
+- Bucket PRIVATE bo‘lsin (Public ni yoqmang).
+- Project Settings > API dan Project URL va service_role key ni oling.
+  service_role key maxfiy: uni hech qachon HTML/JS ichiga yozmang.
+
+2) TELEGRAM BOT TOKEN
+- BotFather orqali bot tokenini oling.
+- Tokenni hech kimga yubormang va chatga joylamang.
+
+3) VERCEL ENVIRONMENT VARIABLES
+Vercel > Project > Settings > Environment Variables:
+SUPABASE_URL = https://YOUR_PROJECT.supabase.co
+SUPABASE_SERVICE_ROLE_KEY = Supabase service_role key
+TELEGRAM_BOT_TOKEN = BotFather token
+ADMIN_TELEGRAM_ID = 6649277063
+Bularni Production, Preview va Development uchun kerakli muhitlarga qo‘shing.
+So‘ng Redeploy qiling.
+
+4) FAYLLARNI JOYLASHTIRISH
+Loyihangizning root papkasida quyidagilar bo‘lsin:
+index.html, styles.css, app.js, admin.html, admin.css, admin.js,
+vercel.json, api/ papkasi, supabase/ papkasi.
+Agar Vercel loyihangiz Next.js bo‘lsa, bu starter bilan aralashtirmang — loyiha tuzilmasiga moslab integratsiya kerak.
+
+5) TELEGRAM
+- Mini App bot ichidan ochilishi shart.
+- Oddiy browserda Telegram initData bo‘lmaydi; /api/auth 401 qaytaradi.
+- Bot tokenini faqat Vercel Environment Variables da saqlang.
+
+HOZIRGI BACKEND NIMALARNI QILADI
+- Telegram initData HMAC tekshiruvi serverda bajariladi (24 soatlik eskirish limiti).
+- Foydalanuvchi birinchi kirganda users jadvaliga yoziladi.
+- Faqat Telegram ID 6649277063 admin deb tan olinadi.
+- Boshqa foydalanuvchilar pending holatida qoladi.
+- Admin API orqali foydalanuvchilarni approved yoki blocked qiladi.
+- Admin kurslarni qo‘shish, o‘zgartirish va o‘chirish API lariga ega.
+- Tasdiqlangan foydalanuvchilar uchun private Storage videolariga 5 daqiqalik signed URL qaytarish endpointi mavjud.
+
+MUHIM CHEKLOVLAR
+- Bu backend starter: Supabase loyihasi, Environment Variables va redeploy qilinmaguncha ishlamaydi.
+- Admin panel UI hozircha API bilan to‘liq ulanmagan; endpointlar tayyor, keyingi bosqichda panelga boshqaruv formalarini ulash kerak.
+- Video yuklash endpointi hali yo‘q. Dars fayllarini hozircha Supabase Storage > academy-videos ga qo‘lda yuklab, lessons jadvaliga storage_path yozish mumkin.
+- Telegram initData tekshiruvi va admin API serverda himoyalangan, lekin deploydan keyin test qilish zarur.
+- Supabase service_role kalitini hech qachon frontendga qo‘ymang.

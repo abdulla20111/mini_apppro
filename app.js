@@ -43,19 +43,33 @@ function showToast(message) {
   window.setTimeout(() => toast.classList.remove("show"), 2400);
 }
 
-function loadTelegramProfile() {
-  const user = window.Telegram?.WebApp?.initDataUnsafe?.user;
-  if (!user) return;
+async function loadTelegramProfile() {
+  const tg = window.Telegram?.WebApp;
+  const user = tg?.initDataUnsafe?.user;
+  if (!user || !tg?.initData) return;
 
   const fullName = [user.first_name, user.last_name].filter(Boolean).join(" ") || "Foydalanuvchi";
   document.getElementById("profileName").textContent = fullName;
   document.getElementById("profileAvatar").textContent = (user.first_name || "U").charAt(0).toUpperCase();
   document.getElementById("profileId").textContent = `Telegram ID: ${user.id}`;
 
-  const isAdmin = String(user.id) === ADMIN_TELEGRAM_ID;
-  if (isAdmin) {
-    adminEditButton.hidden = false;
-    document.getElementById("profileRole").textContent = "Admin";
+  try {
+    const response = await fetch("/api/auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ initData: tg.initData })
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || "Tekshiruv amalga oshmadi");
+
+    const isAdmin = result.role === "admin";
+    adminEditButton.hidden = !isAdmin;
+    document.getElementById("profileRole").textContent =
+      isAdmin ? "Admin" : (result.status === "approved" ? "Tasdiqlangan o‘quvchi" : "Tasdiq kutilmoqda");
+  } catch (error) {
+    adminEditButton.hidden = true;
+    document.getElementById("profileRole").textContent = "Server tekshiruvi mavjud emas";
+    console.error("Academy auth:", error);
   }
 }
 
@@ -66,13 +80,21 @@ profileButton.addEventListener("click", () => {
 
 adminEditButton.addEventListener("click", () => {
   const tg = window.Telegram?.WebApp;
-  const userId = tg?.initDataUnsafe?.user?.id;
-
-  if (tg?.initData && String(userId) === ADMIN_TELEGRAM_ID) {
-    window.location.href = "admin.html";
-  } else {
-    showToast("Bu bo‘lim faqat admin uchun.");
+  if (!tg?.initData) {
+    showToast("Admin bo‘limi Telegram ichida ochiladi.");
+    return;
   }
+  fetch("/api/auth", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ initData: tg.initData })
+  })
+    .then(async response => {
+      const result = await response.json();
+      if (!response.ok || result.role !== "admin") throw new Error("Ruxsat yo‘q");
+      window.location.href = "admin.html";
+    })
+    .catch(() => showToast("Bu bo‘lim faqat admin uchun."));
 });
 
 loadTelegramProfile();
