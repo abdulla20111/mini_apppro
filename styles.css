@@ -77,3 +77,41 @@ button { font: inherit; color: inherit; }
 @keyframes rise { from { opacity:0;transform:translateY(18px); } to { opacity:1;transform:translateY(0); } }
 @keyframes pageIn { from { opacity:0;transform:translateX(22px) scale(.985);filter:blur(5px); } to { opacity:1;transform:translateX(0) scale(1);filter:blur(0); } }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important;transition-duration:.01ms!important; } }
+
+
+/* Profil sahifasi va faqat admin ko‘radigan tahrirlash tugmasi */
+.profile-button { font-size:0; display:grid; place-items:center; }
+.profile-button::before { content:""; width:15px; height:15px; border:2px solid #f4f2ff; border-radius:50%; position:absolute; top:8px; }
+.profile-button::after { content:""; width:23px; height:11px; border:2px solid #f4f2ff; border-bottom:0; border-radius:14px 14px 0 0; position:absolute; bottom:7px; }
+.profile-button { position:relative; }
+.profile-panel {
+  padding:28px 22px; border:1px solid var(--line); border-radius:27px;
+  background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.035));
+  box-shadow:0 18px 50px rgba(0,0,0,.18); text-align:center;
+}
+.profile-avatar {
+  width:76px;height:76px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(145deg,#a99aff,#5c54c8);font-size:30px;font-weight:800;
+  box-shadow:0 8px 30px #7764ff44;
+}
+.profile-panel h2 { margin:9px 0 7px;font-size:23px;letter-spacing:-.04em; }
+.profile-id { color:var(--muted);font-size:11px;margin:0; }
+.profile-status {
+  margin-top:24px;padding:15px 16px;border-radius:16px;background:rgba(255,255,255,.055);
+  display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#a7adbf;
+}
+.profile-status strong { color:#b8aaff; }
+.admin-edit-button {
+  width:100%;margin-top:18px;padding:17px;border-radius:19px;border:1px solid rgba(139,119,255,.38);
+  background:linear-gradient(110deg,rgba(99,82,220,.28),rgba(255,255,255,.06));
+  display:flex;align-items:center;gap:13px;text-align:left;cursor:pointer;
+}
+.admin-edit-button[hidden] { display:none; }
+.admin-edit-icon {
+  width:43px;height:43px;display:grid;place-items:center;border-radius:14px;
+  background:rgba(128,109,255,.2);color:#c2b7ff;font-size:23px;
+}
+.admin-edit-button span:nth-child(2) { display:flex;flex-direction:column;gap:5px;flex:1; }
+.admin-edit-button strong { font-size:13px; }
+.admin-edit-button small { font-size:10px;color:var(--muted); }
+.admin-edit-button b { color:#b8aaff;font-size:20px; }

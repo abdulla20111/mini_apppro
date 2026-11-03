@@ -15,7 +15,7 @@
         <span class="eyebrow">WELCOME TO</span>
         <strong>ACADEMY</strong>
       </div>
-      <button class="profile-button" aria-label="Profil">✦</button>
+      <button class="profile-button" aria-label="Profil" title="Profil">♙</button>
     </header>
 
     <section id="homeScreen" class="screen screen-active">
@@ -52,7 +52,26 @@
       <footer class="home-footer"><span class="pulse-dot"></span> Yangi bilimlar sari birga</footer>
     </section>
 
-    <section id="aiScreen" class="screen detail-screen">
+
+    <section id="profileScreen" class="screen detail-screen">
+      <button class="back-button" data-back>‹ <span>Orqaga</span></button>
+      <div class="profile-panel">
+        <div class="profile-avatar" id="profileAvatar">U</div>
+        <span class="eyebrow">SHAXSIY KABINET</span>
+        <h2 id="profileName">Foydalanuvchi</h2>
+        <p class="profile-id" id="profileId">Telegram ID: aniqlanmagan</p>
+        <div class="profile-status">
+          <span>Akademiya profili</span>
+          <strong id="profileRole">O‘quvchi</strong>
+        </div>
+      </div>
+      <button class="admin-edit-button" id="adminEditButton" hidden>
+        <span class="admin-edit-icon">✎</span>
+        <span><strong>Saytni tahrirlash</strong><small>Admin boshqaruv panelini ochish</small></span>
+        <b>→</b>
+      </button>
+    </section>
+\n    <section id="aiScreen" class="screen detail-screen">
       <button class="back-button" data-back>‹ <span>Orqaga</span></button>
       <div class="detail-hero ai-detail">
         <span class="detail-symbol">✧</span>
@@ -84,6 +103,7 @@
     </section>
   </main>
   <div class="toast" id="toast" role="status"></div>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
